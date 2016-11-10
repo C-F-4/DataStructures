@@ -49,34 +49,34 @@ public:
 class LinkedList {
 private:
   Node* head;
-  Node* last;
+  Node* tail;
 public:
-  LinkedList():head(nullptr), last(nullptr) {
+  LinkedList():head(nullptr), tail(nullptr) {
   }
 
   Node* GetHead() {
     return head;
   }
 
-  Node* GetLast() {
-    return last;
+  Node* GetTail() {
+    return tail;
   }
 
   void InsertBeg(int d) {
     Node* newNode = new Node(d);
     newNode->SetNext(head);
     head = newNode;
-    if(last == nullptr) {
-      last = head;
+    if(tail == nullptr) {
+      tail = head;
     }
     return;
   }
 
   void InsertAfter(int d, Node* prev) {
-    if(prev == nullptr || head == nullptr || last == nullptr) {
+    if(prev == nullptr || head == nullptr || tail == nullptr) {
       clog << "Modifying the head" << endl;
       head = new Node(d);
-      last = head;
+      tail = head;
       return;
     }
     else {
@@ -91,8 +91,8 @@ public:
       }
       Node* newNode = new Node(d, prev->GetNext());
       prev->SetNext(newNode);
-      if(prev == last) {
-        last = last->GetNext();
+      if(prev == tail) {
+        tail = tail->GetNext();
       }
       return;
     }
@@ -100,25 +100,25 @@ public:
 
   void InsertEnd(int d) {
     Node* newNode = new Node(d);
-    if(last == nullptr) {
+    if(tail == nullptr) {
       clog << "Modifying the head" << endl;
       head = newNode;
-      last = newNode;
+      tail = newNode;
       return;
     }
     else {
-      last->SetNext(newNode);
-      last = last->GetNext();
+      tail->SetNext(newNode);
+      tail = tail->GetNext();
       return;
     }
   }
 
-  void append(int d) {
+  void Append(int d) {
     Node* newNode = new Node(d);
     if(head == nullptr) {
       clog << "Modifying the head" << endl;
       head = newNode;
-      last = newNode;
+      tail = newNode;
       return;
     }
     else {
@@ -127,11 +127,143 @@ public:
         tmp = tmp->GetNext();
       }
       tmp->SetNext(newNode);
-      last = tmp->GetNext();
+      tail = tmp->GetNext();
     }
   }
 
-  void print() {
+  bool DeleteFirst(int key) {
+    if(head == nullptr) {
+      return false;
+    }
+    else {
+      Node* tmp = head;
+      Node* prev = nullptr;
+      while(tmp != nullptr && tmp->GetData() != key) {
+        prev = tmp;
+        tmp = tmp->GetNext();
+      }
+      if(tmp == nullptr) {
+        return false;
+      }
+      else {
+        if(tmp == head) {
+          head = head->GetNext();
+        }
+        else if(tmp == tail) {
+          // move last to prev;
+          tail = prev;
+          tail->SetNext(nullptr);
+        }
+        else {
+          prev->SetNext(tmp->GetNext());
+        }
+        delete tmp;
+        return true;
+      }
+    }
+  }
+
+  int DelAll(Node* prev, Node* cur, int key) {
+    int ct = 0;
+    Node* new_prev = nullptr;
+    Node* new_cur = nullptr;
+    if(cur == nullptr) {
+      return 0;
+    }
+    else if(cur->GetData() == key) {
+      // delete
+      Node* tmp = cur;
+
+      if(tmp == head) {
+        head = head->GetNext();
+        new_prev = nullptr;
+        new_cur = head;
+      }
+      else if(tmp == tail) {
+        tail = prev;
+        new_prev = prev;
+        new_cur = nullptr;
+        prev->SetNext(nullptr);
+      }
+      else {
+        new_prev = prev;
+        prev->SetNext(tmp->GetNext());
+        new_cur = prev->GetNext();
+      }
+      delete tmp;
+      ct ++;
+
+      cur = prev;
+    }
+    else {
+      new_prev = cur;
+      new_cur = cur->GetNext();
+    }
+    return (ct + DelAll(new_prev, new_cur, key));
+  }
+
+  int DeleteAll(int key) {
+    if(head == nullptr) {
+      return 0;
+    }
+    else {
+      return DelAll(nullptr, head, key);
+    }
+  }
+
+  // pos values [0, size - 1]
+  bool DelPosition(int pos) {
+    if(head == nullptr || pos < 0) {
+      return false;
+    }
+    else if(pos == 0) {
+      Node* cur = head;
+      head = head->GetNext();
+      delete cur;
+      return true;
+    }
+    else {
+      Node* prev = nullptr;
+      Node* cur = head;
+      for(int i = 0; i < pos && cur != nullptr; i++) {
+        prev = cur;
+        cur = cur->GetNext();
+      }
+      if(cur == nullptr) {
+        return false;
+      }
+      else {
+        prev->SetNext(cur->GetNext());
+        delete cur;
+        return true;
+      }
+    }
+  }
+
+  size_t Size() {
+    size_t x = 0;
+    Node* cur = head;
+    while(cur) {
+      x ++;
+      cur = cur->GetNext();
+    }
+    return x;
+  }
+
+  size_t CalcSize(Node* cur, size_t x) {
+    if(cur == nullptr) {
+      return x;
+    }
+    return CalcSize(cur->GetNext(), x+1);
+  }
+
+  size_t SizeRec() {
+    size_t x = 0;
+    Node* cur = head;
+    return CalcSize(cur, x);
+  }
+
+  void Print() {
     Node* tmp = head;
     while(tmp) {
       cout << tmp->GetData() << ' ';
@@ -151,12 +283,24 @@ int main(void) {
     cin >> tmp;
     my_list.InsertBeg(tmp);
   }
-  my_list.print();
+  my_list.Print();
   my_list.InsertAfter(1, my_list.GetHead());
-  my_list.print();
+  my_list.Print();
   my_list.InsertEnd(7);
-  my_list.print();
-  my_list.append(8);
-  my_list.print();
+  my_list.Print();
+  my_list.Append(8);
+  my_list.Print();
+  my_list.DeleteFirst(8);
+  my_list.DeleteFirst(0);
+  my_list.Print();
+  my_list.InsertBeg(1);
+  my_list.InsertEnd(1);
+  my_list.InsertEnd(1);
+  my_list.Print();
+  cout << my_list.DeleteAll(1) << endl;
+  my_list.Print();
+  my_list.DelPosition(0);
+  my_list.Print();
+  cout << my_list.Size() << ' ' << my_list.SizeRec() << endl;
   return 0;
 }
