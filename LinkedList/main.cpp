@@ -1,273 +1,8 @@
 #include <iostream>
-#include <climits>
+//#include "Node.h"
+#include "List.h"
 
 using namespace std;
-
-class Node {
-private:
-    int data;
-    Node* next;
-public:
-    Node():data(0), next(nullptr) {
-    }
-
-    Node(int data):data(data), next(nullptr) {
-    }
-
-    Node(int data, Node* next):data(data), next(next) {
-    }
-
-    ~Node() {
-        delete next;
-        this->next = nullptr;
-    }
-
-    void setData(int data) {
-        this->data = data;
-    }
-
-    void setNext(Node* next) {
-        this->next = next;
-    }
-
-    int getData() {
-        return this->data;
-    }
-
-    Node* getNext() {
-        return this->next;
-    }
-};
-
-class LinkedList {
-private:
-    Node* head;
-public:
-    LinkedList():head(nullptr) {
-    }
-
-    LinkedList(Node* head):head(head) {
-    }
-
-    ~LinkedList() {
-        delete head;
-        this->head = nullptr;
-    }
-
-    void insertBeg(int data) {
-        Node* new_node = new Node(data, this->head);
-        this->head = new_node;
-    }
-
-    void insertAfter(int data, Node* key_node) {
-        if(key_node == nullptr) {
-            cerr << "Err: Key Node can't be null" << endl;
-        }
-        else {
-            Node* tmp = this->head;
-            Node* new_node = new Node(data);
-            if(tmp == key_node) {
-                new_node->setNext(tmp);
-                this->head = new_node;
-            }
-            else {
-                while(tmp != key_node && tmp != nullptr) {
-                    tmp = tmp->getNext();
-                }
-                if(tmp == nullptr) {
-                    cerr << "Err: Key Node not found" << endl;
-                }
-                else {
-                    new_node->setNext(tmp->getNext());
-                    tmp->setNext(new_node);
-                }
-            }
-        }
-    }
-
-    void insertBefore(int data, Node* key_node) {
-        if(key_node == nullptr) {
-            if(this->head != nullptr)
-                cerr << "Err: Key Node can't be null" << endl;
-            else if(this->head == nullptr) {
-                Node* new_node = new Node(data, key_node);
-                this->head = new_node;
-            }
-        }
-        else {
-            Node* tmp = this->head;
-            Node* new_node = new Node(data, key_node);
-            if(tmp == key_node) {
-                this->head = new_node;
-            }
-            else {
-                while(tmp->getNext() != key_node && tmp != nullptr) {
-                    tmp = tmp->getNext();
-                }
-                if(tmp == nullptr) {
-                    cerr << "Err: Key Node not found" << endl;
-                }
-                else {
-                    tmp->setNext(new_node);
-                }
-            }
-        }
-    }
-
-    void insertEnd(int data) {
-        Node* new_node = new Node(data);
-        Node* tmp = this->head;
-        while(tmp->getNext() != nullptr) {
-            tmp = tmp->getNext();
-        }
-        tmp->setNext(new_node);
-    }
-
-    void deleteBeg() {
-        if(this->head == nullptr) {
-            cerr << "Err: List doesn't have any elements to delete" << endl;
-        }
-        else {
-            Node* tmp = this->head;
-            this->head = this->head->getNext();
-            tmp->setNext(nullptr);
-            delete tmp;
-        }
-    }
-
-    void deleteNode(Node* key_node) {
-        if(key_node == nullptr) {
-            cerr << "Err: Key Node can't be null" << endl;
-        }
-        else {
-            Node* tmp = this->head;
-            if(key_node == tmp) {
-                this->head = this->head->getNext();
-                tmp->setNext(nullptr);
-                delete tmp;
-            }
-            else {
-                while(tmp->getNext() != key_node && tmp != nullptr) {
-                    tmp = tmp->getNext();
-                }
-                if(tmp == nullptr) {
-                    cerr << "Err: Key Node not found" << endl;
-                }
-                else {
-                    Node* tmp2 = tmp->getNext();
-                    tmp->setNext(tmp->getNext()->getNext());
-                    tmp2->setNext(nullptr);
-                    delete tmp2;
-                }
-            }
-        }
-    }
-
-    void deleteEnd() {
-        if(this->head == nullptr) {
-            cerr << "Err: List doesn't have any elements to delete" << endl;
-        }
-        else if(this->head->getNext() == nullptr) {
-            delete this->head;
-            this->head = nullptr;
-        }
-        else {
-            Node* tmp = this->head;
-            Node* del_node = nullptr;
-            while(tmp->getNext() != nullptr && tmp->getNext()->getNext() != nullptr) {
-                tmp = tmp->getNext();
-            }
-            del_node = tmp->getNext();
-            tmp->setNext(nullptr);
-            delete del_node;
-        }
-    }
-
-    int deleteAll(int key) {
-        Node* del_node = nullptr;
-        Node* tmp = this->head;
-        int ct = 0;
-        while(tmp->getData() == key) {
-            this->head = this->head->getNext();
-            tmp->setNext(nullptr);
-            delete tmp;
-            tmp = this->head;
-            ct++;
-        }
-        while(tmp != nullptr && tmp->getNext() != nullptr) {
-            if(tmp->getNext()->getData() == key) {
-                del_node = tmp->getNext();
-                tmp->setNext(tmp->getNext()->getNext());
-                del_node->setNext(nullptr);
-                delete del_node;
-                ct++;
-            }
-            else {
-                tmp = tmp->getNext();
-            }
-        }
-        return ct;
-    }
-
-    void printList() {
-        Node* tmp = this->head;
-        cout << ">> ";
-        while(tmp != nullptr) {
-            cout << tmp->getData() << ' ';
-            tmp = tmp->getNext();
-        }
-        cout << endl;
-    }
-
-    size_t getSize() {
-        Node* tmp = this->head;
-        size_t size_l = 0;
-        while(tmp != nullptr) {
-            tmp = tmp->getNext();
-            size_l++;
-        }
-        return size_l;
-    }
-
-    int getElement(int pos) {
-        if(this->head == nullptr) {
-            return INT_MIN;
-        }
-        else {
-            Node* tmp = this->head;
-            int i = 0;
-            while(tmp != nullptr && i != pos) {
-                tmp = tmp->getNext();
-                i++;
-            }
-            if(i == pos)
-                return tmp->getData();
-            else
-                return INT_MIN;
-        }
-    }
-
-    Node* getHead() {
-        return this->head;
-    }
-
-    /* Code Bloat */
-    inline Node* getFirst(){
-        return this->getHead();
-    }
-
-    Node* getLast() {
-        Node* tmp = this->head;
-        while(tmp->getNext() != nullptr) {
-            tmp = tmp->getNext();
-        }
-        return tmp;
-    }
-
-    bool hasElement() {
-        return ((this->head != nullptr)?(true):(false));
-    }
-};
 
 int main() {
     LinkedList* llist = new LinkedList();
@@ -288,7 +23,7 @@ int main() {
     llist->printList();
     unsigned int i = 0;
     cout << ">> ";
-    while(llist->hasElement()) {
+    while(llist->isNotEmpty()) {
         cout << llist->getFirst()->getData() << ' ';
         llist->deleteBeg();
     }
@@ -309,5 +44,17 @@ int main() {
     cout << endl;
     cout << "Deleted Nodes Counter: " << llist->deleteAll(1) << endl;
     llist->printList();
+    cout << "Size: " << llist->getSize() << ' '
+        << llist->getSizeR(llist->getHead()) << endl;
+    cout << ">> ";
+    llist->printListR(llist->getHead());
+    cout << (llist->contains(1)?("true"):("false")) << endl;
+    cout << (llist->containsR(llist->getHead(), 2)?("true"):("false")) << endl;
+    cout << (llist->containsR(llist->getHead(), 1)?("true"):("false")) << endl;
+    llist->insertionSort();
+    llist->insertEnd(INT_MAX);
+    llist->printList();
+    LinkedList llist_2(*llist);
+    llist_2.printList();
     return 0;
 }

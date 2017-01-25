@@ -1,0 +1,23 @@
+#include "Node.h"
+
+/*
+** Setter Methods
+*/
+void Node::setData(int data) {
+    this->data = data;
+    }
+
+    void setNext(Node* next) {
+        this->next = next;
+}
+
+/*
+** Getter Methods
+*/
+int Node::getData() {
+    return this->data;
+}
+
+Node* Node::getNext() {
+    return this->next;
+}
