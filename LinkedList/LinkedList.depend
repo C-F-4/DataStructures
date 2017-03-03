@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1485356899 source:d:\git\datastructures\linkedlist\main.cpp
+1485410525 source:d:\git\datastructures\linkedlist\main.cpp
 	<iostream>
-	"List.h"
+	"List.hpp"
 
 1485355224 source:d:\git\datastructures\linkedlist\node.cpp
 	"Node.h"
@@ -13,6 +13,13 @@
 	<climits>
 	"Node.h"
 
-1485356775 source:d:\git\datastructures\linkedlist\list.cpp
-	"List.h"
+1485410506 source:d:\git\datastructures\linkedlist\list.cpp
+	"List.hpp"
+
+1485410514 d:\git\datastructures\linkedlist\list.hpp
+	<iostream>
+	<climits>
+	"Node.hpp"
+
+1485354923 d:\git\datastructures\linkedlist\node.hpp
 

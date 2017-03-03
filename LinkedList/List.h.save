@@ -1,4 +1,5 @@
 // List.h
+
 #include <iostream>
 #include <climits>
 #include "Node.h"
@@ -6,7 +7,6 @@ using namespace std;
 
 #ifndef List_h
 #define List_h
-//#define INLINE inline
 class LinkedList {
  private:
   Node* head;
@@ -14,11 +14,14 @@ class LinkedList {
  public:
   LinkedList ();
   LinkedList (Node* head);
+  LinkedList (const LinkedList& head);
   ~LinkedList ();
+  operator = ();
   void insertBeg (int data);
   void insertAfter (int data, Node* key_node);
   void insertBefore (int data, Node* key_node);
   void insertEnd (int data);
+  void append (Node*);
   void deleteBeg ();
   void deleteNode (Node* key_node);
   void deleteEnd ();
@@ -38,6 +41,5 @@ class LinkedList {
   void insertSorted (Node** sorted, int key);
   void insertionSort ();
 };
-inline Node* LinkedList::getFirst( ) { return this->getHead(); }
-//#undef INLINE
+inline Node* LinkedList::getFirst () { return this->getHead(); }
 #endif

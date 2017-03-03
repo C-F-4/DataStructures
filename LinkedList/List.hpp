@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <climits>
-#include "Node.h"
+#include "Node.hpp"
 using namespace std;
 
 #ifndef List_h

@@ -33,9 +33,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="List.cpp" />
-		<Unit filename="List.h" />
+		<Unit filename="List.hpp" />
 		<Unit filename="Node.cpp" />
-		<Unit filename="Node.h" />
+		<Unit filename="Node.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<envvars />
