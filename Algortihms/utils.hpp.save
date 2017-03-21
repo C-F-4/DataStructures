@@ -1,0 +1,8 @@
+#ifndef UTILS_HPP_INCLUDED
+#define UTILS_HPP_INCLUDED
+
+/**
+ * Utils Functions features various Algorithm Approaches (Function Headers)
+ */
+
+#endif // UTILS_HPP_INCLUDED

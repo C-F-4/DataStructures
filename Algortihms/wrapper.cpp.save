@@ -1,0 +1,97 @@
+/**
+ * Wrapper Functions allow more enhanced options to the algorithms (Functions Definitions)
+ */
+#include <iostream>
+#include <cstdlib>
+#include "wrapper.hpp"
+
+namespace wrapper {
+    /*OPERATINGSYSTEM = {
+        windows = 0,
+        mac = 1,
+        linux = 2
+        /*add more OS here*/
+    };
+
+    int getOs(){
+        #ifdef _WIN32
+            return wrapper::OPERATINGSYSTEM.windows;
+        #elif __APPLE__
+            return wrapper::OPERATINGSYSTEM.mac;
+        #elif __linux__
+            return wrapper::OPERATINGSYSTEM.linux;
+        #endif
+    }
+
+    void clearScreen(){
+        int id = getOs();
+        if(id == OPERATINGSYSTEM.windows) {
+            system("CLS");
+        }
+        else if(id == OPERATINGSYSTEM.mac) {
+            system("CLEAR");
+        }
+        else if(id == OPERATINGSYSTEM.linux) {
+            system("clear");
+        }
+    }
+
+    // Update it to support constraints + Template + Template Specialization
+    int inputOption() {
+        int tmp;
+        std::cout << ">> ";
+        std::cin >> tmp;
+        return tmp;
+    }
+
+    int searchWrapper() {
+        std::cout << "0 - Linear Search" << std::endl
+            << "1 - Binary Search" << std::endl;
+        int op;
+        op = wrapper::inputOption();
+        if(op == 0) {
+            // Do Linear Search
+
+        }
+        else if(op == 1) {
+            // Do Binary Search
+        }
+        return 0;
+    }
+
+    int sortWrapper() {
+        std::cout << "0 - Bubble Sort" << std::endl
+            << "1 - Insertion Sort" << std::endl
+            << "2 - Merge Sort" << std::endl
+            << "3 - Quick Sort" << std::endl;
+        int op;
+        op = wrapper::inputOption();
+        if(op == 0) {
+            // Do Bubble Sort
+        }
+        else if(op == 1) {
+            // Do Insertion Sort
+        }
+        else if(op == 2) {
+            // Do Merge Sort
+        }
+        else if(op == 3) {
+            // Do Quick Sort
+        }
+        return 0;
+    }
+
+    int greedyWrapper() {
+        std::cout << "0 - Knapsack Problem" << std::endl
+             << "1 - Machine Scheduling" << std::endl;
+        int op;
+        op = wrapper::inputOption();
+        if(op == 0) {
+            // Do Knapsack Problem
+        }
+        else if(op == 1) {
+            // Do Machine Scheduling
+        }
+        return 0;
+    }
+}

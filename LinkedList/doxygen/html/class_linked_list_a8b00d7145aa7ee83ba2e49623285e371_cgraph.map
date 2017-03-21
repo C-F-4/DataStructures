@@ -1,0 +1,5 @@
+<map id="LinkedList::deleteAll" name="LinkedList::deleteAll">
+<area shape="rect" id="node2" href="$class_node.html#aca98907146d5d0687f48bf8be9df9b7d" title="Node::getData" alt="" coords="192,5,297,32"/>
+<area shape="rect" id="node3" href="$class_node.html#ae36639ff267d63e058ce309fde5a9913" title="Node::getNext" alt="" coords="192,56,297,83"/>
+<area shape="rect" id="node4" href="$class_node.html#a89b12aca90acdf6a8a547cbdab9b80a5" title="Node::setNext" alt="" coords="192,107,297,133"/>
+</map>

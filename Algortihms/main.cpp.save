@@ -1,0 +1,42 @@
+#include <iostream>
+#include "wrapper.hpp"
+
+/**
+ * List of Various Available Algorithmic Approaches
+ * Searching Algorithms
+ *** Linear Search
+ *** Binary Search
+
+ * Sorting Algorithms
+ *** Bubble Sort
+ *** Insertion Sort
+ *** Merge Sort
+ *** Quick Sort
+
+ * Greedy Approach
+ *** Knapsack Problem
+ *** Machine Scheduling
+ */
+
+int main(void)
+{
+    int op;
+    // Create options here to use each algorithm
+    std::cout << "Available Options:" << std::endl
+         << "0 - Available Searching Algorithms" << std::endl
+         << "1 - Sorting Algorithms" << std::endl
+         << "2 - Greedy Approaches" << std::endl;
+    std::cout << ">> ";
+    op = wrapper::input
+    int retVal;
+    if(op == 0) {
+        retVal = wrapper::searchWrapper();
+    }
+    else if(op == 1) {
+        retVal = wrapper::sortWrapper();
+    }
+    else if(op == 2) {
+        retVal = wrapper::greedyWrapper();
+    }
+    return 0;
+}

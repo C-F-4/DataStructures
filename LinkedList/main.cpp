@@ -45,7 +45,7 @@ int main() {
     cout << "Deleted Nodes Counter: " << llist->deleteAll(1) << endl;
     llist->printList();
     cout << "Size: " << llist->getSize() << ' '
-        << llist->getSizeR(llist->getHead()) << endl;
+         << llist->getSizeR(llist->getHead()) << endl;
     cout << ">> ";
     llist->printListR(llist->getHead());
     cout << (llist->contains(1)?("true"):("false")) << endl;

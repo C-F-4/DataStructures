@@ -1,0 +1,157 @@
+.TH "LinkedList" 3 "Sun Mar 5 2017" "Version 0.001" "Data Structures - LinkedList - DocTest" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LinkedList
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <List\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLinkedList\fP ()"
+.br
+.ti -1c
+.RI "\fBLinkedList\fP (\fBNode\fP *head)"
+.br
+.ti -1c
+.RI "\fBLinkedList\fP (const \fBLinkedList\fP &head)"
+.br
+.ti -1c
+.RI "\fB~LinkedList\fP ()"
+.br
+.ti -1c
+.RI "void \fBinsertBeg\fP (int data)"
+.br
+.ti -1c
+.RI "void \fBinsertAfter\fP (int data, \fBNode\fP *key_node)"
+.br
+.ti -1c
+.RI "void \fBinsertBefore\fP (int data, \fBNode\fP *key_node)"
+.br
+.ti -1c
+.RI "void \fBinsertEnd\fP (int data)"
+.br
+.ti -1c
+.RI "void \fBappend\fP (\fBNode\fP *)"
+.br
+.ti -1c
+.RI "void \fBdeleteBeg\fP ()"
+.br
+.ti -1c
+.RI "void \fBdeleteNode\fP (\fBNode\fP *key_node)"
+.br
+.ti -1c
+.RI "void \fBdeleteEnd\fP ()"
+.br
+.ti -1c
+.RI "int \fBdeleteAll\fP (int key)"
+.br
+.ti -1c
+.RI "void \fBprintListR\fP (\fBNode\fP *tmp)"
+.br
+.ti -1c
+.RI "void \fBprintList\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBgetSizeR\fP (\fBNode\fP *tmp)"
+.br
+.ti -1c
+.RI "size_t \fBgetSize\fP ()"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBgetHead\fP ()"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBgetFirst\fP ()"
+.br
+.ti -1c
+.RI "\fBNode\fP * \fBgetLast\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisEmpty\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisNotEmpty\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetElement\fP (int pos)"
+.br
+.ti -1c
+.RI "bool \fBcontains\fP (int key)"
+.br
+.ti -1c
+.RI "bool \fBcontainsR\fP (\fBNode\fP *tmp, int key)"
+.br
+.ti -1c
+.RI "void \fBinsertSorted\fP (\fBNode\fP **sorted, int key)"
+.br
+.ti -1c
+.RI "void \fBinsertionSort\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LinkedList::LinkedList ()"
+
+.SS "LinkedList::LinkedList (\fBNode\fP * head)"
+
+.SS "LinkedList::LinkedList (const \fBLinkedList\fP & head)"
+
+.SS "LinkedList::~LinkedList ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void LinkedList::append (\fBNode\fP * node)"
+
+.SS "bool LinkedList::contains (int key)"
+
+.SS "bool LinkedList::containsR (\fBNode\fP * tmp, int key)"
+
+.SS "int LinkedList::deleteAll (int key)"
+
+.SS "void LinkedList::deleteBeg ()"
+
+.SS "void LinkedList::deleteEnd ()"
+
+.SS "void LinkedList::deleteNode (\fBNode\fP * key_node)"
+
+.SS "int LinkedList::getElement (int pos)"
+
+.SS "\fBNode\fP * LinkedList::getFirst ()\fC [inline]\fP"
+
+.SS "\fBNode\fP * LinkedList::getHead ()"
+
+.SS "\fBNode\fP * LinkedList::getLast ()"
+
+.SS "size_t LinkedList::getSize ()"
+
+.SS "size_t LinkedList::getSizeR (\fBNode\fP * tmp)"
+
+.SS "void LinkedList::insertAfter (int data, \fBNode\fP * key_node)"
+
+.SS "void LinkedList::insertBefore (int data, \fBNode\fP * key_node)"
+
+.SS "void LinkedList::insertBeg (int data)"
+
+.SS "void LinkedList::insertEnd (int data)"
+
+.SS "void LinkedList::insertionSort ()"
+
+.SS "void LinkedList::insertSorted (\fBNode\fP ** sorted, int key)"
+
+.SS "bool LinkedList::isEmpty ()"
+
+.SS "bool LinkedList::isNotEmpty ()"
+
+.SS "void LinkedList::printList ()"
+
+.SS "void LinkedList::printListR (\fBNode\fP * tmp)"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Data Structures - LinkedList - DocTest from the source code\&.

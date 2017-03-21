@@ -1,0 +1,24 @@
+#ifndef WRAPPER_HPP_INCLUDED
+#define WRAPPER_HPP_INCLUDED
+
+/**
+ * Wrapper Functions allow more enhanced options to the algorithms (Functions Headers)
+ */
+namespace wrapper{
+    const int temp = 10;
+    void printTemp();
+    const enum OPERATINGSYSTEM;/* = {
+        windows = 0,
+        mac = 1,
+        linux = 2
+        /*add more OS here*/
+    //};
+
+    //void clearScreen();
+    int inputOption();
+    int searchWrapper();
+    int sortWrapper();
+    int greedyWrapper();
+}
+
+#endif // WRAPPER_HPP_INCLUDED

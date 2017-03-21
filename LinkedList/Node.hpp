@@ -37,4 +37,4 @@ public:
     Node* getNext ();
 };
 
-#endif // Node_H
+#endif
