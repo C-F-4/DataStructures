@@ -1,6 +1,6 @@
 #include <iostream>
 #include "wrapper.hpp"
-
+#include "utils.hpp"
 /**
  * List of Various Available Algorithmic Approaches
  * Searching Algorithms
@@ -10,33 +10,46 @@
  * Sorting Algorithms
  *** Bubble Sort
  *** Insertion Sort
+ *** Selection Sort
  *** Merge Sort
  *** Quick Sort
+ *** Radix Sort
+ *** External Sort
 
  * Greedy Approach
- *** Knapsack Problem
+ *** Knapsack Problem - Fractional | 0-1
  *** Machine Scheduling
+
+ * Fibonacci
+ * Maximum Contiguous Subsequence Sum
  */
 
 int main(void)
 {
-    int op;
+    /*int op;
     // Create options here to use each algorithm
     std::cout << "Available Options:" << std::endl
-         << "0 - Available Searching Algorithms" << std::endl
+         << "0 - Searching Algorithms" << std::endl
          << "1 - Sorting Algorithms" << std::endl
          << "2 - Greedy Approaches" << std::endl;
-    std::cout << ">> ";
-    op = wrapper::input
+    op = wrapper::inputOption<int>();
     int retVal;
     if(op == 0) {
+        wrapper::clearScreen();
         retVal = wrapper::searchWrapper();
     }
     else if(op == 1) {
+        wrapper::clearScreen();
         retVal = wrapper::sortWrapper();
     }
     else if(op == 2) {
+        wrapper::clearScreen();
         retVal = wrapper::greedyWrapper();
+    }*/
+    vector<int> v;
+    for(int i = 0; i < 10; i++) {
+        v.push_back(i);
     }
+    utils::sumOfSubsets();
     return 0;
 }
