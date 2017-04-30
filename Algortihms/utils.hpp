@@ -266,7 +266,6 @@ void sumOfSubsets(std::vector<int> v, std::vector<bool> m, int curSum, int cur, 
     curSum += v.at(cur);
     m.at(cur) = true;
     if(curSum == sum) {
-        m.at(cur) == true;
         for(uint i = 0; i < v.size(); i++) {
             if(m.at(i)) {
                 std::cout << v.at(i) << ' ';

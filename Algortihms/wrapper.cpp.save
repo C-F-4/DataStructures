@@ -222,7 +222,8 @@ int greedyWrapper() {
               << "3 - Sum Of Subsets - DP" << std::endl
               << "4 - N Queens - DP" << std::endl
               << "5 - Maximum Contiguous Sum Subsequence" << std::endl
-              << "6 - Fibonacci" << std::endl;
+              << "6 - Fibonacci" << std::endl
+              << "7 - Reduce N -> 1" << std::endl;
     int op;
     op = wrapper::inputOption<int>();
     if(op == 0) {
@@ -278,9 +279,9 @@ int greedyWrapper() {
         for(int i = 0; i < 10; i++) {
             v.push_back(i);
         }
-        v.at(0) = -1;
-        //wrapper::printVector(utils::sumOfSubWrap(v, 5));
-        utils::sumOfSubWrap(v, 7);
+        v.at(0) = 7;
+        wrapper::printVector(utils::sumOfSubWrap(v, 5));
+        utils::sumOfSubWrap(v, 6);
     }
     else if(op == 4) {
         // DP - - Move to DP wrapper
@@ -296,8 +297,8 @@ int greedyWrapper() {
         }*/
         std::pair<int, std::pair<int, int>> res = utils::maxContSumSub(num);
         std::cout << ">> " << res.first << std::endl;
-        for(int i = res.first; i <= finish; i++) {
-            std::cout << v.at(i) << " ";
+        for(int i = res.second.first; i <= res.second.second; i++) {
+            std::cout << num.at(i) << " ";
         }
         std::cout << std::endl;
     }

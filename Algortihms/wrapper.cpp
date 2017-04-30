@@ -274,14 +274,14 @@ int greedyWrapper() {
         utils::machineScheduling(v);
     }
     else if(op == 3) {
-        // DP - Move to separate DP wrapper
+        // DP - Move to separate BT wrapper
         std::vector<int> v;
         for(int i = 0; i < 10; i++) {
-            v.push_back(i);
+            v.push_back(i+1);
         }
-        v.at(0) = -1;
+        v.at(3) = 3;
         //wrapper::printVector(utils::sumOfSubWrap(v, 5));
-        utils::sumOfSubWrap(v, 7);
+        utils::sumOfSubWrap(v, 6);
     }
     else if(op == 4) {
         // DP - - Move to DP wrapper

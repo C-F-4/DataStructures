@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <algorithm>
-#include <cstring>
+#include <sstream>
 #include <climits>
 #include <vector>
 #include <map>
@@ -273,6 +273,8 @@ void sumOfSubsets(std::vector<int> v, std::vector<bool> m, int curSum, int cur, 
             }
         }
         std::cout << std::endl;
+        std::fill();
+        sumOfSubsets(v, m, 0, cur+1, sum);
         return;
     }
     else if(curSum > sum) {
@@ -360,8 +362,9 @@ void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool
         for(uint i = 0; i < sizeB; i++) {
             for(uint j = 0; j < sizeB; j++) {
                 if(queens[i][j]) {
-                    tmpOutcome += std::to_string(i);
-                    tmpOutcome += std::to_string(j);
+                    std::ostringstream oss;
+                    oss << i << j;
+                    tmpOutcome += oss.str();
                 }
             }
         }
@@ -371,8 +374,9 @@ void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool
                 for(uint j = 0; j < sizeB; j++) {
                     std::cout << queens[i][j] << ' ';
                     if(queens[i][j]) {
-                        newOutcome += std::to_string(i);
-                        newOutcome += std::to_string(j);
+                        std::ostringstream oss;
+                        oss << i << j;
+                        newOutcome += oss.str();
                     }
                 }
                 std::cout << std::endl;
