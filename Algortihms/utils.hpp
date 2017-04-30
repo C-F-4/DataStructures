@@ -350,18 +350,39 @@ std::vector<std::vector<bool>> markUnmarkable(std::vector<std::vector<bool>> can
     return canPlace;
 }
 
-bool nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool>> canPlace,
+std::vector<std::string> outcomes;
+void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool>> canPlace,
              int queensLeft, size_t sizeB) {
     if(queensLeft == 0) {
         // Print the output
+        std::string tmpOutcome = "";
         for(uint i = 0; i < sizeB; i++) {
             for(uint j = 0; j < sizeB; j++) {
-                std::cout << queens[i][j] << ' ';
+                if(queens[i][j]) {
+                    char a = i + '0';
+                    char b = j + '0';
+                    tmpOutcome += a;
+                    tmpOutcome += b;
+                }
+            }
+        }
+        if(find(outcomes.begin(), outcomes.end(), tmpOutcome) == outcomes.end()) {
+            std::string newOutcome = "";
+            for(uint i = 0; i < sizeB; i++) {
+                for(uint j = 0; j < sizeB; j++) {
+                    std::cout << queens[i][j] << ' ';
+                    if(queens[i][j]) {
+                        char a = i + '0';
+                        char b = j + '0';
+                        newOutcome += a;
+                        newOutcome += b;
+                    }
+                }
+                std::cout << std::endl;
             }
             std::cout << std::endl;
+            outcomes.push_back(newOutcome);
         }
-        std::cout << std::endl;
-        return true;
     }
     else {
         for(int i = 0; i < sizeB; i++) {
@@ -370,10 +391,7 @@ bool nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool
                 if(canPlace[i][j]) {
                     queens[i][j] = true;
                     //canPlace[i][j] = false;
-                    bool foundFlag = nQueens(queens, markUnmarkable(canPlace, sizeB, i, j), queensLeft - 1, sizeB);
-                    if(foundFlag) {
-                        return true;
-                    }
+                    nQueens(queens, markUnmarkable(canPlace, sizeB, i, j), queensLeft - 1, sizeB);
                     queens[i][j] = false;
                     //canPlace[i][j] = true;
                 }

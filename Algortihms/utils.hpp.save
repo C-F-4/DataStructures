@@ -183,7 +183,7 @@ std::vector<T> quickSort(std::vector<T> v) {
  * Fractional Knapsack Problem
  * Method Type: Greedy Approach
  */
-temp3333333late <typename T>
+template <typename T>
 void fracKnapsack(std::vector<T> items, int itemSize, int sackSize) {
     sort(items.begin(), items.end(), [](T const& a, T const& b) {
              return a.benefit > b.benefit;
@@ -350,18 +350,34 @@ std::vector<std::vector<bool>> markUnmarkable(std::vector<std::vector<bool>> can
     return canPlace;
 }
 
-bool nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool>> canPlace,
-             int queensLeft, size_t sizeB) {
+void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool>> canPlace,
+             std::vector<std::string> outcomes, int queensLeft, size_t sizeB) {
     if(queensLeft == 0) {
         // Print the output
+        std::string tmpOutcome = "";
         for(uint i = 0; i < sizeB; i++) {
             for(uint j = 0; j < sizeB; j++) {
-                std::cout << queens[i][j] << ' ';
+                if(queens[i][j]) {
+                    tmpOutcome += ()i + j;
+                }
+            }
+        }
+        std::cout << tmpOutcome << ' ';
+        if(find(outcomes.begin(), outcomes.end(), tmpOutcome) != outcomes.end()) {
+            std::string newOutcome = "";
+            for(uint i = 0; i < sizeB; i++) {
+                for(uint j = 0; j < sizeB; j++) {
+                    std::cout << queens[i][j] << ' ';
+                    if(queens[i][j]) {
+                        newOutcome += i + j;
+                    }
+                }
+                std::cout << std::endl;
             }
             std::cout << std::endl;
+            std::cout << newOutcome << ' ';
+            outcomes.push_back(newOutcome);
         }
-        std::cout << std::endl;
-        return true;
     }
     else {
         for(int i = 0; i < sizeB; i++) {
@@ -370,10 +386,7 @@ bool nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool
                 if(canPlace[i][j]) {
                     queens[i][j] = true;
                     //canPlace[i][j] = false;
-                    bool foundFlag = nQueens(queens, markUnmarkable(canPlace, sizeB, i, j), queensLeft - 1, sizeB);
-                    if(foundFlag) {
-                        return true;
-                    }
+                    nQueens(queens, markUnmarkable(canPlace, sizeB, i, j), outcomes, queensLeft - 1, sizeB);
                     queens[i][j] = false;
                     //canPlace[i][j] = true;
                 }
@@ -387,7 +400,8 @@ void nQueens(size_t sizeB) {
     std::vector<std::vector<bool>> canPlace(sizeB, std::vector<bool>(sizeB, true));
     // Total Number of Queens to place
     int total = sizeB;
-    nQueens(queens, canPlace, total, sizeB);
+    std::vector<std::string> outcomes;
+    nQueens(queens, canPlace, outcomes, total, sizeB);
 }
 
 /**
