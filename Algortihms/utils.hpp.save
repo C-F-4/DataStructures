@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 #include <climits>
 #include <vector>
 #include <map>
@@ -350,32 +351,33 @@ std::vector<std::vector<bool>> markUnmarkable(std::vector<std::vector<bool>> can
     return canPlace;
 }
 
+std::vector<std::string> outcomes;
 void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool>> canPlace,
-             std::vector<std::string> outcomes, int queensLeft, size_t sizeB) {
+             int queensLeft, size_t sizeB) {
     if(queensLeft == 0) {
         // Print the output
         std::string tmpOutcome = "";
         for(uint i = 0; i < sizeB; i++) {
             for(uint j = 0; j < sizeB; j++) {
                 if(queens[i][j]) {
-                    tmpOutcome += ()i + j;
+                    tmpOutcome += std::to_string(i);
+                    tmpOutcome += std::to_string(j);
                 }
             }
         }
-        std::cout << tmpOutcome << ' ';
-        if(find(outcomes.begin(), outcomes.end(), tmpOutcome) != outcomes.end()) {
+        if(find(outcomes.begin(), outcomes.end(), tmpOutcome) == outcomes.end()) {
             std::string newOutcome = "";
             for(uint i = 0; i < sizeB; i++) {
                 for(uint j = 0; j < sizeB; j++) {
                     std::cout << queens[i][j] << ' ';
                     if(queens[i][j]) {
-                        newOutcome += i + j;
+                        newOutcome += std::to_string(i);
+                        newOutcome += std::to_string(j);
                     }
                 }
                 std::cout << std::endl;
             }
             std::cout << std::endl;
-            std::cout << newOutcome << ' ';
             outcomes.push_back(newOutcome);
         }
     }
@@ -386,7 +388,7 @@ void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool
                 if(canPlace[i][j]) {
                     queens[i][j] = true;
                     //canPlace[i][j] = false;
-                    nQueens(queens, markUnmarkable(canPlace, sizeB, i, j), outcomes, queensLeft - 1, sizeB);
+                    nQueens(queens, markUnmarkable(canPlace, sizeB, i, j), queensLeft - 1, sizeB);
                     queens[i][j] = false;
                     //canPlace[i][j] = true;
                 }
@@ -400,8 +402,7 @@ void nQueens(size_t sizeB) {
     std::vector<std::vector<bool>> canPlace(sizeB, std::vector<bool>(sizeB, true));
     // Total Number of Queens to place
     int total = sizeB;
-    std::vector<std::string> outcomes;
-    nQueens(queens, canPlace, outcomes, total, sizeB);
+    nQueens(queens, canPlace, total, sizeB);
 }
 
 /**

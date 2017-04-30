@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <sstream>
 #include <climits>
 #include <vector>
 #include <map>
@@ -359,10 +360,9 @@ void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool
         for(uint i = 0; i < sizeB; i++) {
             for(uint j = 0; j < sizeB; j++) {
                 if(queens[i][j]) {
-                    char a = i + '0';
-                    char b = j + '0';
-                    tmpOutcome += a;
-                    tmpOutcome += b;
+                    std::ostringstream oss;
+                    oss << i << j;
+                    tmpOutcome += oss.str();
                 }
             }
         }
@@ -372,10 +372,9 @@ void nQueens(std::vector<std::vector<bool>> queens, std::vector<std::vector<bool
                 for(uint j = 0; j < sizeB; j++) {
                     std::cout << queens[i][j] << ' ';
                     if(queens[i][j]) {
-                        char a = i + '0';
-                        char b = j + '0';
-                        newOutcome += a;
-                        newOutcome += b;
+                        std::ostringstream oss;
+                        oss << i << j;
+                        newOutcome += oss.str();
                     }
                 }
                 std::cout << std::endl;
